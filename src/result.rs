@@ -1,3 +1,6 @@
+/// Extension trait with useful methods for [`std::result::Result`].
+///
+/// [`std::result::Result`]: https://doc.rust-lang.org/std/result/enum.Result.html
 pub trait ResultExt<T, E> {
     /// Combines `self` and another `Result`.
     ///
