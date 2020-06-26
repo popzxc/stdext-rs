@@ -1,6 +1,63 @@
 pub trait OptionExt<T> {
+    /// Combines `self` and another `Option`.
+    ///
+    /// If `self` is `Some(s)` and `other` is `Some(o)`, this method returns `Some((s, o))`.
+    /// Otherwise, `None` is returned.
+    ///
+    /// **Note:** `std::Option` already provides a [`zip`] method which serves exact same purpose,
+    /// but currently it's unstable. Once it's stabilized, this method will be marked as deprecated
+    /// with a prompt to use the stanard method instead.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use stdext::prelude::*;
+    ///
+    /// let x = Some(1);
+    /// let y = Some("hi");
+    /// let z = None::<u8>;
+    ///
+    /// assert_eq!(x.combine(y), Some((1, "hi")));
+    /// assert_eq!(x.combine(z), None);
+    /// ```
+    ///
+    /// [`zip`]: https://doc.rust-lang.org/std/option/enum.Option.html#method.zip
     fn combine<U>(self, other: Option<U>) -> Option<(T, U)>;
 
+    /// Combines `self` and another `Option` with function `f`.
+    ///
+    /// If `self` is `Some(s)` and `other` is `Some(o)`, this method returns `Some(f(s, o))`.
+    /// Otherwise, `None` is returned.
+    ///
+    /// **Note:** `std::Option` already provides a [`zip_with`] method which serves exact same purpose,
+    /// but currently it's unstable. Once it's stabilized, this method will be marked as deprecated
+    /// with a prompt to use the stanard method instead.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use stdext::prelude::*;
+    ///
+    /// #[derive(Debug, PartialEq)]
+    /// struct Point {
+    ///     x: f64,
+    ///     y: f64,
+    /// }
+    ///
+    /// impl Point {
+    ///     fn new(x: f64, y: f64) -> Self {
+    ///         Self { x, y }
+    ///     }
+    /// }
+    ///
+    /// let x = Some(17.5);
+    /// let y = Some(42.7);
+    ///
+    /// assert_eq!(x.combine_with(y, Point::new), Some(Point { x: 17.5, y: 42.7 }));
+    /// assert_eq!(x.combine_with(None, Point::new), None);
+    /// ```
+    ///
+    /// [`zip_with`]: https://doc.rust-lang.org/std/option/enum.Option.html#method.zip_with
     fn combine_with<U, F, R>(self, other: Option<U>, f: F) -> Option<R>
     where
         F: FnOnce(T, U) -> R;
