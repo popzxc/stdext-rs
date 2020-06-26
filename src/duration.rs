@@ -4,21 +4,199 @@ const SECS_IN_MIN: u64 = 60;
 const SECS_IN_HOUR: u64 = 3600;
 const SECS_IN_DAY: u64 = 3600 * 24;
 
+/// Extension trait with useful methods for [`std::time::Duration`].
+///
+/// [`std::time::Duration`]: https://doc.rust-lang.org/std/time/struct.Duration.html
 pub trait DurationExt {
+    /// Creates a new `Duration` from the specified number of minutes.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::from_minutes(1);
+    ///
+    /// assert_eq!(duration, Duration::from_secs(60));
+    /// ```
+    ///
+    /// # Panics
+    ///
+    /// Panics if the total amount of seconds exceeds the `u64` type range.
     fn from_minutes(minutes: u64) -> Duration;
+
+    /// Creates a new `Duration` from the specified number of hours.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::from_hours(1);
+    ///
+    /// assert_eq!(duration, Duration::from_secs(3600));
+    /// ```
+    ///
+    /// # Panics
+    ///
+    /// Panics if the total amount of seconds exceeds the `u64` type range.
     fn from_hours(hours: u64) -> Duration;
+
+    /// Creates a new `Duration` from the specified number of hours.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::from_days(1);
+    ///
+    /// assert_eq!(duration, Duration::from_secs(3600 * 24));
+    /// ```
+    ///
+    /// # Panics
+    ///
+    /// Panics if the total amount of seconds exceeds the `u64` type range.
     fn from_days(days: u64) -> Duration;
 
+    /// Adds the specified amount of nanoseconds to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_nanos(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_nanos(1));
+    /// ```
     fn add_nanos(self, nanos: u64) -> Duration;
+
+    /// Adds the specified amount of microseconds to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_micros(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_micros(1));
+    /// ```
     fn add_micros(self, micros: u64) -> Duration;
+
+    /// Adds the specified amount of milliseconds to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_millis(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_millis(1));
+    /// ```
     fn add_millis(self, millis: u64) -> Duration;
+
+    /// Adds the specified amount of seconds to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_secs(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_secs(1));
+    /// ```
     fn add_secs(self, seconds: u64) -> Duration;
+
+    /// Adds the specified amount of minutes to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_minutes(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_minutes(1));
+    /// ```
     fn add_minutes(self, minutes: u64) -> Duration;
+
+    /// Adds the specified amount of hours to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_hours(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_hours(1));
+    /// ```
     fn add_hours(self, hours: u64) -> Duration;
+
+    /// Adds the specified amount of days to the `Duration` object.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::default().add_days(1);
+    ///
+    /// assert_eq!(duration, Duration::default() + Duration::from_days(1));
+    /// ```
     fn add_days(self, days: u64) -> Duration;
 
+    /// Returns the number of _whole_ minutes contained by this `Duration`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::new(61, 730023852);
+    /// assert_eq!(duration.as_minutes(), 1);
+    /// ```
     fn as_minutes(&self) -> u64;
+
+    /// Returns the number of _whole_ hours contained by this `Duration`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::new(3601, 730023852);
+    /// assert_eq!(duration.as_hours(), 1);
+    /// ```
     fn as_hours(&self) -> u64;
+
+    /// Returns the number of _whole_ hours contained by this `Duration`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use std::time::Duration;
+    /// use stdext::prelude::*;
+    ///
+    /// let duration = Duration::new(61, 730023852).add_days(1);
+    /// assert_eq!(duration.as_days(), 1);
+    /// ```
     fn as_days(&self) -> u64;
 }
 
