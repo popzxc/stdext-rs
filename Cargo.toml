@@ -3,7 +3,12 @@ name = "stdext"
 version = "0.1.0"
 authors = ["Igor Aleksanov <popzxc@yandex.ru>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://github.com/popzxc/stdext-rs"
+documentation = "https://docs.rs/stdext"
+readme = "README.md"
+license = "MIT"
+keywords = ["std", "extensions", "helpers", "utils"]
+categories = ["rust-patterns"]
+description = "Extensions for the Rust standard library structures."
 
 [dependencies]
