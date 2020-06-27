@@ -36,7 +36,7 @@ pub trait VecExt<T> {
     /// [`Clone`]: https://doc.rust-lang.org/std/clone/trait.Clone.html
     /// [`Default`]: https://doc.rust-lang.org/std/default/trait.Default.html
     /// [`Default::default()`]: https://doc.rust-lang.org/std/default/trait.Default.html#tymethod.default
-    /// [`resize_up`]: ../trait.VecExtClone.html#method.resize_up
+    /// [`resize_up`]: ./trait.VecExtClone.html#tymethod.resize_up
     fn resize_up_with<F>(&mut self, new_len: usize, f: F)
     where
         F: FnMut() -> T;
@@ -57,7 +57,7 @@ pub trait VecExtClone<T: Clone> {
     /// This method requires `T` to implement [`Clone`],
     /// in order to be able to clone the passed value.
     /// If you need more flexibility (or want to rely on [`Default`] instead of
-    /// [`Clone`]), use [`VecExt::resize_up_with`].
+    /// [`Clone`]), use [`resize_up_with`].
     ///
     /// # Examples
     ///
@@ -75,7 +75,7 @@ pub trait VecExtClone<T: Clone> {
     ///
     /// [`Clone`]: https://doc.rust-lang.org/std/clone/trait.Clone.html
     /// [`Default`]: https://doc.rust-lang.org/std/default/trait.Default.html
-    /// [`resize_up_with`]: ../trait.VecExt.html#method.resize_up_with
+    /// [`resize_up_with`]: ./trait.VecExt.html#tymethod.resize_up_with
     fn resize_up(&mut self, new_len: usize, value: T);
 }
 
