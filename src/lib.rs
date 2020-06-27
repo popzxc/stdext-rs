@@ -1,3 +1,95 @@
+//! Additional features for the Rust standard library.
+//!
+//! ## Description
+//!
+//! This crate contains enhancements to the Rust standard library types, useful for
+//! broad audience, but not yet implemented (or stabilized) in `std`.
+//!
+//! Crate is designed to be lightweight (no external dependencies!) and provide essential
+//! functionality which possible can get to the `std` some day.
+//!
+//! ## Extension traits
+//!
+//! All the new functionality the stanard library is added using extension traits.
+//!
+//! Below you can find the table of all the extension traits introduced by this crate:
+//!
+//! | `std` structure | extension traits
+//! | --- | ---
+//! | [`Vec`] | [`VecExt`] and [`VecExtClone`]
+//! | [`&str`] | [`StrExt`]
+//! | [`Option`] | [`OptionExt`]
+//! | [`Result`] | [`ResultExt`]
+//! | [`Duration`] | [`DurationExt`]
+//! | [`RwLock`] | [`RwLockExt`]
+//! | [`Mutex`] | [`MutexExt`]
+//!
+//! [`Vec`]: https://doc.rust-lang.org/std/vec/struct.Vec.html
+//! [`&str`]: https://doc.rust-lang.org/std/primitive.str.html
+//! [`Option`]: https://doc.rust-lang.org/std/option/enum.Option.html
+//! [`Result`]: https://doc.rust-lang.org/std/result/enum.Result.html
+//! [`Duration`]: https://doc.rust-lang.org/std/time/struct.Duration.html
+//! [`RwLock`]: https://doc.rust-lang.org/std/sync/struct.RwLock.html
+//! [`Mutex`]: https://doc.rust-lang.org/std/sync/struct.Mutex.html
+//!
+//! [`VecExt`]: vec/trait.VecExt.html
+//! [`VecExtClone`]: vec/trait.VecExtClone.html
+//! [`StrExt`]: str/trait.StrExt.html
+//! [`OptionExt`]: option/trait.OptionExt.html
+//! [`ResultExt`]: result/trait.ResultExt.html
+//! [`DurationExt`]: duration/trait.DurationExt.html
+//! [`RwLockExt`]: sync/rw_lock/trait.RwLockExt.html
+//! [`MutexExt`]: sync/mutex/trait.MutexExt.html
+//!
+//! ## Highlights
+//!
+//! - Convenient builder methods for **`Duration`**:
+//!   
+//!   ```rust
+//!   use stdext::prelude::*;
+//!
+//!   let duration = Duration::from_minutes(1).add_seconds(5).add_micros(100);
+//!   assert_eq!(duration, Duration::new(61, 100_000));
+//!   ```
+//!
+//! - Panicking version for **`RwLock::read`**, **`RwLock::write`** and **`Mutex::lock`** (for
+//!   fellows who don't really handle the lock poisoning):
+//!
+//!   ```rust
+//!   use std::sync::{Arc, RwLock};
+//!   use stdext::prelude::*;
+//!   
+//!   let lock = Arc::new(RwLock::new(1));
+//!   {
+//!       let mut n = lock.force_write(); // Instead of `.write().unwrap()`.
+//!       *n = 2;
+//!   }
+//!   let n = lock.force_read();
+//!   assert_eq!(*n, 2);
+//!   ```
+//!   
+//! - **`Result::combine`** and **`Option::combine`** to zip pairs of objects:
+//!   
+//!   ```rust
+//!   use stdext::prelude::*;
+//!   
+//!   let x = Some(1);
+//!   let y = Some("hi");
+//!   let z = None::<u8>;
+//!   
+//!   assert_eq!(x.combine(y), Some((1, "hi")));
+//!   assert_eq!(x.combine(z), None);
+//!
+//!   let x = Ok(1);
+//!   let y = Ok("hi");
+//!   let z: Result<i32, &str> = Err("error");
+//!   let z2: Result<i32, &str> = Err("other_error");
+//!
+//!   assert_eq!(x.combine(y), Ok((1, "hi")));
+//!   assert_eq!(x.combine(z), Err("error"));
+//!   assert_eq!(z.combine(z2), Err("error"));
+//!   ```
+
 pub mod duration;
 pub mod option;
 pub mod result;
