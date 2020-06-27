@@ -1,5 +1,14 @@
 # `std` extensions
 
+**Status:**
+[![CI](https://github.com/popzxc/stdext-rs/workflows/CI/badge.svg)](https://github.com/popzxc/stdext-rs/actions)
+
+**Project info:**
+[![Docs.rs](https://docs.rs/stdext/badge.svg)](https://docs.rs/stdext)
+[![Latest Version](http://meritbadge.herokuapp.com/stdext)](https://crates.io/crates/stdext)
+[![License](https://img.shields.io/github/license/popzxc/stdext-rs.svg)](https://github.com/popzxc/stdext-rs)
+![Rust 1.44+ required](https://img.shields.io/badge/rust-1.44+-blue.svg?label=Rust)
+
 Additional features for the Rust standard library.
 
 ## Description
@@ -15,10 +24,11 @@ functionality which possible can get to the `std` some day.
 - Convenient builder methods for **`Duration`**:
   
   ```rust
+  use std::time::Duration;
   use stdext::prelude::*;
 
-  let duration = Duration::from_minutes(1).add_seconds(5).add_micros(100);
-  assert_eq!(duration, Duration::new(61, 100_000));
+  let duration = Duration::from_minutes(1).add_secs(5).add_micros(100);
+  assert_eq!(duration, Duration::new(65, 100_000));
   ```
 
 - Panicking version for **`RwLock::read`**, **`RwLock::write`** and **`Mutex::lock`** (for
