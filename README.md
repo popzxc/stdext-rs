@@ -24,10 +24,11 @@ functionality which possible can get to the `std` some day.
 - Convenient builder methods for **`Duration`**:
   
   ```rust
+  use std::time::Duration;
   use stdext::prelude::*;
 
-  let duration = Duration::from_minutes(1).add_seconds(5).add_micros(100);
-  assert_eq!(duration, Duration::new(61, 100_000));
+  let duration = Duration::from_minutes(1).add_secs(5).add_micros(100);
+  assert_eq!(duration, Duration::new(65, 100_000));
   ```
 
 - Panicking version for **`RwLock::read`**, **`RwLock::write`** and **`Mutex::lock`** (for
