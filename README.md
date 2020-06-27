@@ -61,6 +61,13 @@ functionality which possible can get to the `std` some day.
 
 ...and other features. For a full list, check out the [crate documentation](https://docs.rs/stdext/).
 
+## Motivation
+
+Standard library is great, and it becomes even better through time. However, a time gap between proposing
+a new feature and getting it stabilized is way too big.
+
+This crate, however, can be updated quickly and the feature will be usable on the stable Rust soon after
+implementation.
 
 ## Contributing
 
