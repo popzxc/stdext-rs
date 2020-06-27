@@ -1,3 +1,5 @@
+//! Extension traits for `std::time::Duration`.
+
 use std::time::Duration;
 
 const SECS_IN_MIN: u64 = 60;

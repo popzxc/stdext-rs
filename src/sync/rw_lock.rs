@@ -1,3 +1,5 @@
+//! Extension traits for `std::sync::RwLock`.
+
 use std::sync::{RwLock, RwLockReadGuard, RwLockWriteGuard};
 
 /// Extension trait with useful methods for [`std::sync::RwLock`].

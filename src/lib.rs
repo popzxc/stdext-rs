@@ -97,6 +97,7 @@ pub mod str;
 pub mod sync;
 pub mod vec;
 
+/// A "prelude" module which re-exports all the extension traits for the simple library usage.
 pub mod prelude {
     pub use crate::{
         duration::*,

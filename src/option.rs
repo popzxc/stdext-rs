@@ -1,3 +1,5 @@
+//! Extension traits for `std::Option`.
+
 /// Extension trait with useful methods for [`std::option::Option`].
 ///
 /// [`std::time::Option`]: https://doc.rust-lang.org/std/option/enum.Option.html

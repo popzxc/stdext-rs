@@ -1,3 +1,5 @@
+//! Extension traits for `std::Vec`.
+
 /// Extension trait with useful methods for [`std::vec::Vec`].
 ///
 /// [`std::vec::Vec`]: https://doc.rust-lang.org/std/vec/struct.Vec.html
@@ -41,6 +43,7 @@ pub trait VecExt<T> {
     where
         F: FnMut() -> T;
 }
+
 /// Extension trait with useful methods for [`std::vec::Vec`].
 ///
 /// This trait contains functions that require `T` to implement `Clone` trait.

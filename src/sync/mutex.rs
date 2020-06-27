@@ -1,3 +1,5 @@
+//! Extension traits for `std::sync::Mutex`.
+
 use std::sync::{Mutex, MutexGuard};
 
 /// Extension trait with useful methods for [`std::sync::Mutex`].

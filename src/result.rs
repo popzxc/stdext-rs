@@ -1,3 +1,5 @@
+//! Extension traits for `std::Result`.
+
 /// Extension trait with useful methods for [`std::result::Result`].
 ///
 /// [`std::result::Result`]: https://doc.rust-lang.org/std/result/enum.Result.html

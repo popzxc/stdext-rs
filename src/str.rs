@@ -1,3 +1,5 @@
+//! Extension traits for `str` primitive type.
+
 /// Alternative for `std::str::pattern::Pattern` that does not require
 /// nightly Rust (as `Pattern` is unstable yet).
 #[doc(hidden)]
