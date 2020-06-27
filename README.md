@@ -75,4 +75,4 @@ If you want to contribute to this project, please read the [contributing guide](
 
 ## LICENSE
 
-`stdext` library is licensed under the MIT License. See [LICENSE] for details.
+`stdext` library is licensed under the MIT License. See [LICENSE](LICENSE) for details.
