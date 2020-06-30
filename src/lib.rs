@@ -92,6 +92,7 @@
 //!   ```
 
 pub mod duration;
+pub mod macros;
 pub mod option;
 pub mod result;
 pub mod str;
