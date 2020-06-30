@@ -4,7 +4,8 @@
 /// This implemented through an existing `dead_code` warning, thus the
 /// output for the following example:
 ///
-/// ```rust,ignore
+/// ```rust
+/// # use stdext::compile_warning;
 /// compile_warning!("Sample user-defined warning!");
 /// ```
 ///
@@ -41,7 +42,6 @@ macro_rules! compile_warning {
 /// # Examples
 ///
 /// ```rust
-///
 /// mod bar {
 ///     pub fn sample_function() {
 ///         use stdext::function_name;

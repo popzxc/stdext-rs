@@ -41,6 +41,16 @@
 //! [`RwLockExt`]: sync/rw_lock/trait.RwLockExt.html
 //! [`MutexExt`]: sync/mutex/trait.MutexExt.html
 //!
+//! ## Macros
+//!
+//! Another group of extensions in `stdext` is new macros:
+//!
+//! - [`compile_warning`] for spawning a user-defined compilation warnings.
+//! - [`function_name`] for getting an enclosing function name.
+//!
+//! [`compile_warning`]: ./macro.compile_warning.html
+//! [`function_name`]: ./macro.function_name.html
+//!
 //! ## Highlights
 //!
 //! - Convenient builder methods for **`Duration`**:
@@ -89,6 +99,18 @@
 //!   assert_eq!(x.combine(y), Ok((1, "hi")));
 //!   assert_eq!(x.combine(z), Err("error"));
 //!   assert_eq!(z.combine(z2), Err("error"));
+//!   ```
+//!
+//! - New handy macros (mostly for development purposes):
+//!   
+//!   ```rust
+//!   use stdext::{compile_warning, function_name};
+//!
+//!   fn sample_function() {
+//!     println!("This function is called {}", function_name!());
+//!
+//!     compile_warning!("This function must do something else...");
+//!   }
 //!   ```
 
 pub mod duration;

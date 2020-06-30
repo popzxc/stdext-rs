@@ -69,6 +69,18 @@ functionality which possible can get to the `std` some day.
   assert_eq!(z.combine(z2), Err("error"));
   ```
 
+- New handy macros (mostly for development purposes):
+  
+  ```rust
+  use stdext::{compile_warning, function_name};
+
+  fn sample_function() {
+    println!("This function is called {}", function_name!());
+
+    compile_warning!("This function must do something else...");
+  }
+  ```
+
 ...and other features. For a full list, check out the [crate documentation](https://docs.rs/stdext/).
 
 ## Motivation
