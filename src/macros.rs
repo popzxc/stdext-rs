@@ -25,8 +25,12 @@
 /// Once [`proc_macro_diagnostics`] feature is stabilized, this macro will be replaced
 /// with a proper proc-macro-based implementation.
 ///
+/// This macro is intended to be used in the development process, as an alternative to the
+/// [`unimplemented`] macro which doesn't cause code to panic.
+///
 /// [`std::compile_error`]: https://doc.rust-lang.org/std/macro.compile_error.html
 /// [`proc_macro_diagnostics`]: https://github.com/rust-lang/rust/issues/54140
+/// [`unimplemented`]: https://doc.rust-lang.org/std/macro.unimplemented.html
 #[macro_export]
 macro_rules! compile_warning {
     ($expr:expr) => {
