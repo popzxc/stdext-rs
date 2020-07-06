@@ -18,6 +18,11 @@ The ideal pull request will satisfy the following criteria:
 
 All the rules (except for the first one) are discussible if you can provide a heavy reasoning for it.
 
+## Requesting the functionality
+
+If you don't want to implement the feature, but still feel that is missing in `std`, feel free to open
+a feature request issue. I'll try to implement it myself once I have the time.
+
 ## Other contributions
 
 Refactoring, improving documentation, adding tests and other kinds of improvements are really appreciated
