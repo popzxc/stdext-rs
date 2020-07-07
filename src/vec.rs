@@ -42,6 +42,24 @@ pub trait VecExt<T> {
     fn resize_up_with<F>(&mut self, new_len: usize, f: F)
     where
         F: FnMut() -> T;
+
+    /// Removes the first instance of `item` from the vector if the item exists.
+    ///
+    /// Based on the unstable vec_remove_item feature, which has been deprecated and will be removed.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use stdext::prelude::*;
+    /// let mut vec = vec![1, 2, 3, 1];
+    ///
+    /// vec.remove_item(&1);
+    ///
+    /// assert_eq!(vec, vec![2, 3, 1]);
+    /// ```
+    fn remove_item<V>(&mut self, item: &V) -> Option<T>
+    where
+        T: PartialEq<V>;
 }
 
 /// Extension trait with useful methods for [`std::vec::Vec`].
@@ -90,6 +108,14 @@ impl<T> VecExt<T> for Vec<T> {
         if self.len() < new_len {
             self.resize_with(new_len, f);
         }
+    }
+
+    fn remove_item<V>(&mut self, item: &V) -> Option<T>
+    where
+        T: PartialEq<V>,
+    {
+        let pos = self.iter().position(|x| *x == *item)?;
+        Some(self.remove(pos))
     }
 }
 
