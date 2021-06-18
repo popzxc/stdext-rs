@@ -138,3 +138,94 @@ macro_rules! unwrap_match {
         $crate::try_match!($var, $variant).unwrap()
     };
 }
+
+/// Checks whether supplied [`Result`] variable is `Ok`
+/// and if so, returns it.
+///
+/// If variant is an `Err`, macro evaluates to the contents of the `Err`
+/// variant.
+///
+/// This macro supports two forms:
+/// - `return_ok!(Ok(42));` - will return `Ok(42)`.
+/// - `return_ok!(inner Ok(42));` - will return just `42`.
+///
+/// ## Examples
+///
+/// ```rust
+/// # use stdext::return_ok;
+///
+/// fn choose_one(left: Result<u8, ()>, right: Result<u8, ()>) -> Result<u8, ()> {
+///     return_ok!(left);
+///     return_ok!(right);
+///     Err(())
+/// }
+///
+/// fn choose_one_inner(left: Result<u8, ()>, right: Result<u8, ()>) -> u8 {
+///     return_ok!(inner left);
+///     return_ok!(inner right);
+///     panic!("Both variables are bad")
+/// }
+///
+/// assert_eq!(choose_one(Err(()), Ok(10)), Ok(10));
+/// assert_eq!(choose_one_inner(Ok(1), Err(())), 1);
+/// ```
+#[macro_export]
+macro_rules! return_ok {
+    ($var:expr) => {
+        match $var {
+            Ok(val) => return Ok(val),
+            Err(err) => err,
+        }
+    };
+    (inner $var:expr) => {
+        match $var {
+            Ok(val) => return val,
+            Err(err) => err,
+        }
+    };
+}
+
+/// Checks whether supplied [`Option`] variable is `Some`
+/// and if so, returns it.
+///
+/// If variant is an `None`, nothing happens.
+///
+/// This macro supports two forms:
+/// - `return_some!(Some(42));` - will return `Some(42)`.
+/// - `return_some!(inner Some(42));` - will return just `42`.
+///
+/// ## Examples
+///
+/// ```rust
+/// # use stdext::return_some;
+///
+/// fn choose_one(left: Option<u8>, right: Option<u8>) -> Option<u8> {
+///     return_some!(left);
+///     return_some!(right);
+///     None
+/// }
+///
+/// fn choose_one_inner(left: Option<u8>, right: Option<u8>) -> u8 {
+///     return_some!(inner left);
+///     return_some!(inner right);
+///     panic!("Both variables are bad")
+/// }
+///
+/// assert_eq!(choose_one(None, Some(10)), Some(10));
+/// assert_eq!(choose_one_inner(Some(1), None), 1);
+/// ```
+#[macro_export]
+macro_rules! return_some {
+    ($var:expr) => {
+        match $var {
+            Some(val) => return Some(val),
+            None => {}
+        }
+    };
+    (inner $var:expr) => {
+        match $var {
+            Some(val) => return val,
+            None => {}
+        }
+    };
+}
