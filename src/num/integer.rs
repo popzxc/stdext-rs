@@ -1,6 +1,8 @@
 // This interface copies `std` one, thus we must discard clippy complains.
 #![allow(clippy::wrong_self_convention)]
 
+//! Extensions for built-in integer traits.
+
 use std::num::ParseIntError;
 use std::ops::{
     Add, AddAssign, BitAnd, BitAndAssign, BitOr, BitOrAssign, BitXor, BitXorAssign, Div, DivAssign,

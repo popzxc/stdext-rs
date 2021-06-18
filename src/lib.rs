@@ -127,6 +127,7 @@ pub mod vec;
 pub mod prelude {
     pub use crate::{
         duration::*,
+        num::{float_convert::*, integer::*},
         option::*,
         result::*,
         str::*,
