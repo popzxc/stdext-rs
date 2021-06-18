@@ -1,3 +1,5 @@
+//! Various helper macros.
+
 /// `compile_warning` macro is a brother of [`std::compile_error`],
 /// which emits a compile-time warning with a provided message.
 ///

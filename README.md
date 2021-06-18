@@ -21,6 +21,31 @@ functionality which possible can get to the `std` some day.
 
 ## Highlights
 
+- `Integer` super-trait that is implemented for all the built-in integers
+  and reflects the common part of their interfaces.
+  
+  ```rust
+  use stdext::prelude::*;
+  
+  fn accepts_any_integer<I: Integer>(a: I, b: I) {
+    println!("{}", (a + b).count_ones());
+  }
+  ```
+  
+- Safe conversions from floating numbers to integers.
+
+  ```rust
+  use stdext::prelude::FloatConvert;
+  
+  let valid: Option<u8> = 10.5f32.checked_floor();
+  let too_big: Option<u8> = 256f32.checked_floor();
+  let nan: Option<u8> = f32::NAN.checked_floor();
+  
+  assert_eq!(valid, Some(10u8));
+  assert_eq!(too_big, None);
+  assert_eq!(nan, None);
+  ```
+
 - Convenient builder methods for **`Duration`**:
   
   ```rust

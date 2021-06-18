@@ -23,6 +23,7 @@
 //! | [`Duration`] | [`DurationExt`]
 //! | [`RwLock`] | [`RwLockExt`]
 //! | [`Mutex`] | [`MutexExt`]
+//! | [`f32`] and [`f64`] | [`FloatConvert`]
 //!
 //! [`Vec`]: https://doc.rust-lang.org/std/vec/struct.Vec.html
 //! [`&str`]: https://doc.rust-lang.org/std/primitive.str.html
@@ -40,6 +41,16 @@
 //! [`DurationExt`]: duration/trait.DurationExt.html
 //! [`RwLockExt`]: sync/rw_lock/trait.RwLockExt.html
 //! [`MutexExt`]: sync/mutex/trait.MutexExt.html
+//! [`FloatConvert`]: num/float_convert/trait.FloatConvert.html
+//!
+//! ## Integer super-trait
+//!
+//! While all built-in integer types have mostly the same interface, it's not backed by any trait,
+//! which makes it impossible to write a function that will accept any built-in integer.
+//!
+//! [`Integer`] trait solves that problem by reflecting the common interface of all the built-in integers.
+//!
+//! [`Integer`]: num/integer/trait.Integer.html
 //!
 //! ## Macros
 //!
@@ -112,6 +123,8 @@
 //!     compile_warning!("This function must do something else...");
 //!   }
 //!   ```
+
+#![warn(missing_docs, unreachable_pub)]
 
 pub mod duration;
 #[macro_use]
