@@ -116,6 +116,7 @@
 pub mod duration;
 #[macro_use]
 pub mod macros;
+pub mod num;
 pub mod option;
 pub mod result;
 pub mod str;
@@ -126,6 +127,7 @@ pub mod vec;
 pub mod prelude {
     pub use crate::{
         duration::*,
+        num::{float_convert::*, integer::*},
         option::*,
         result::*,
         str::*,
