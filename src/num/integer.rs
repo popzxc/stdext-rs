@@ -12,6 +12,8 @@ use std::ops::{
 /// This trait is implemented for all the built-in integer types and copies their interface completely,
 /// so it's possible to write generic code that accepts any integer number.
 ///
+/// Interface includes all the trait implementations as well, such as [`Copy`], [`Add`] or [`BitXorAssign`].
+///
 /// ## Caveats
 ///
 /// - `<to/from/as>_<be/ne/le>_bytes` are not implemented, as the return type (array of generic const length that
@@ -45,164 +47,218 @@ pub trait Integer:
     const MAX: Self;
     const BITS: u32;
 
+    /// See [`u128::from_str_radix`].
     fn from_str_radix(src: &str, radix: u32) -> Result<Self, ParseIntError>;
 
+    /// See [`u128::count_ones`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn count_ones(self) -> u32;
 
+    /// See [`u128::count_zeros`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn count_zeros(self) -> u32;
 
+    /// See [`u128::leading_zeros`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn leading_zeros(self) -> u32;
 
+    /// See [`u128::trailing_zeros`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn trailing_zeros(self) -> u32;
 
+    /// See [`u128::leading_ones`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn leading_ones(self) -> u32;
 
+    /// See [`u128::trailing_ones`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn trailing_ones(self) -> u32;
 
+    /// See [`u128::rotate_left`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn rotate_left(self, n: u32) -> Self;
 
+    /// See [`u128::rotate_right`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn rotate_right(self, n: u32) -> Self;
 
+    /// See [`u128::swap_bytes`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn swap_bytes(self) -> Self;
 
+    /// See [`u128::reverse_bits`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn reverse_bits(self) -> Self;
 
+    /// See [`u128::from_be`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn from_be(x: Self) -> Self;
 
+    /// See [`u128::from_le`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn from_le(x: Self) -> Self;
 
+    /// See [`u128::to_be`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn to_be(self) -> Self;
 
+    /// See [`u128::to_le`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn to_le(self) -> Self;
 
+    /// See [`u128::checked_add`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_add(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_sub`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_sub(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_mul`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_mul(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_div`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_div(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_div_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_div_euclid(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_rem`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_rem(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_rem_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_rem_euclid(self, rhs: Self) -> Option<Self>;
 
+    /// See [`u128::checked_neg`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_neg(self) -> Option<Self>;
 
+    /// See [`u128::checked_shl`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_shl(self, rhs: u32) -> Option<Self>;
 
+    /// See [`u128::checked_shr`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_shr(self, rhs: u32) -> Option<Self>;
 
+    /// See [`u128::checked_pow`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn checked_pow(self, exp: u32) -> Option<Self>;
 
+    /// See [`u128::saturating_add`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn saturating_add(self, rhs: Self) -> Self;
 
+    /// See [`u128::saturating_sub`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn saturating_sub(self, rhs: Self) -> Self;
 
+    /// See [`u128::saturating_mul`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn saturating_mul(self, rhs: Self) -> Self;
 
+    /// See [`u128::saturating_pow`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn saturating_pow(self, exp: u32) -> Self;
 
+    /// See [`u128::wrapping_add`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_add(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_sub`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_sub(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_mul`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_mul(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_div`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_div(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_div_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_div_euclid(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_rem`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_rem(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_rem_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_rem_euclid(self, rhs: Self) -> Self;
 
+    /// See [`u128::wrapping_neg`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_neg(self) -> Self;
 
+    /// See [`u128::wrapping_shl`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_shl(self, rhs: u32) -> Self;
 
+    /// See [`u128::wrapping_shr`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_shr(self, rhs: u32) -> Self;
 
+    /// See [`u128::wrapping_pow`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn wrapping_pow(self, exp: u32) -> Self;
 
+    /// See [`u128::overflowing_add`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_add(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_sub`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_sub(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_mul`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_mul(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_div`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_div(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_div_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_div_euclid(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_rem`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_rem(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_rem_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_rem_euclid(self, rhs: Self) -> (Self, bool);
 
+    /// See [`u128::overflowing_neg`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_neg(self) -> (Self, bool);
 
+    /// See [`u128::overflowing_shr`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_shr(self, rhs: u32) -> (Self, bool);
 
+    /// See [`u128::overflowing_pow`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn overflowing_pow(self, exp: u32) -> (Self, bool);
 
+    /// See [`u128::pow`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn pow(self, exp: u32) -> Self;
 
+    /// See [`u128::div_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn div_euclid(self, rhs: Self) -> Self;
 
+    /// See [`u128::rem_euclid`].
     #[must_use = "this returns the result of the operation, without modifying the original"]
     fn rem_euclid(self, rhs: Self) -> Self;
 }
