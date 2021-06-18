@@ -442,3 +442,15 @@ macro_rules! impl_integer {
 impl_integer!(u8, u16, u32, u64, u128);
 impl_integer!(i8, i16, i32, i64, i128);
 impl_integer!(usize, isize);
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn basic() {
+        assert_eq!(<u8 as super::Integer>::BITS, u8::BITS);
+        assert_eq!(
+            <u32 as super::Integer>::trailing_ones(10u32),
+            10u32.trailing_ones()
+        );
+    }
+}
