@@ -44,28 +44,40 @@ macro_rules! saturated_impl {
     }};
 }
 
-impl FloatConvert<u8> for f32 {
-    fn checked_floor(self) -> Option<u8> {
-        checked_impl!(self.floor(), u8)
-    }
+macro_rules! impl_float_convert {
+    ($float:ty, $($int:ty),+) => {
+        $(impl FloatConvert<$int> for $float {
+            fn checked_floor(self) -> Option<$int> {
+                checked_impl!(self.floor(), $int)
+            }
 
-    fn checked_ceil(self) -> Option<u8> {
-        checked_impl!(self.ceil(), u8)
-    }
+            fn checked_ceil(self) -> Option<$int> {
+                checked_impl!(self.ceil(), $int)
+            }
 
-    fn checked_round(self) -> Option<u8> {
-        checked_impl!(self.round(), u8)
-    }
+            fn checked_round(self) -> Option<$int> {
+                checked_impl!(self.round(), $int)
+            }
 
-    fn saturated_floor(self) -> u8 {
-        saturated_impl!(self.floor(), u8)
-    }
+            fn saturated_floor(self) -> $int {
+                saturated_impl!(self.floor(), $int)
+            }
 
-    fn saturated_ceil(self) -> u8 {
-        saturated_impl!(self.ceil(), u8)
-    }
+            fn saturated_ceil(self) -> $int {
+                saturated_impl!(self.ceil(), $int)
+            }
 
-    fn saturated_round(self) -> u8 {
-        saturated_impl!(self.round(), u8)
-    }
+            fn saturated_round(self) -> $int {
+                saturated_impl!(self.round(), $int)
+            }
+        })+
+    };
 }
+
+impl_float_convert!(f32, u8, u16, u32, u64, u128);
+impl_float_convert!(f32, i8, i16, i32, i64, i128);
+impl_float_convert!(f32, usize, isize);
+
+impl_float_convert!(f64, u8, u16, u32, u64, u128);
+impl_float_convert!(f64, i8, i16, i32, i64, i128);
+impl_float_convert!(f64, usize, isize);
