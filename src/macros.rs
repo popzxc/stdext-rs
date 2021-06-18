@@ -100,3 +100,41 @@ macro_rules! try_match {
         }
     };
 }
+
+/// Similar to [`try_match`] but additionally unwraps the result.
+///
+/// ## Panics
+///
+/// Panics if expression didn't match the provided path.
+///
+/// ## Examples
+///
+/// ```rust
+/// # use stdext::unwrap_match;
+///
+/// #[derive(Debug, PartialEq)]
+/// enum Foo {
+///     Left(u16),
+///     Right(&'static str),
+/// }
+///
+/// assert_eq!(unwrap_match!(Foo::Left(18), Foo::Left), 18);
+/// ```
+///
+/// The following example will panic:
+///
+/// ```should_panic
+/// # use stdext::unwrap_match;
+/// # #[derive(Debug, PartialEq)]
+/// # enum Foo {
+/// #     Left(u16),
+/// #     Right(&'static str),
+/// # }
+/// assert_eq!(unwrap_match!(Foo::Right("nope"), Foo::Left), 18);
+/// ```
+#[macro_export]
+macro_rules! unwrap_match {
+    ($var:expr, $variant:path) => {
+        $crate::try_match!($var, $variant).unwrap()
+    };
+}
