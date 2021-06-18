@@ -25,23 +25,23 @@ use std::ops::{
 ///   as they exist for the unsigned numbers only.
 pub trait Integer:
     Sized
-    + Add
+    + Add<Self, Output = Self>
     + AddAssign
-    + Sub
+    + Sub<Self, Output = Self>
     + SubAssign
-    + Shr
+    + Shr<Self, Output = Self>
     + ShrAssign
-    + Shl
+    + Shl<Self, Output = Self>
     + ShlAssign
-    + BitAnd
+    + BitAnd<Self, Output = Self>
     + BitAndAssign
-    + BitOr
+    + BitOr<Self, Output = Self>
     + BitOrAssign
-    + BitXor
+    + BitXor<Self, Output = Self>
     + BitXorAssign
-    + Div
+    + Div<Self, Output = Self>
     + DivAssign
-    + Mul
+    + Mul<Self, Output = Self>
     + MulAssign
     + Copy
 {
@@ -452,5 +452,15 @@ mod tests {
             <u32 as super::Integer>::trailing_ones(10u32),
             10u32.trailing_ones()
         );
+    }
+
+    fn accepts_any_integer<I: super::Integer>(a: I, b: I) -> u32 {
+        (a + b).count_ones()
+    }
+
+    #[test]
+    fn composite() {
+        assert_eq!(accepts_any_integer(0u8, 0u8), 0);
+        assert_eq!(accepts_any_integer(1i128, 0i128), 1);
     }
 }
