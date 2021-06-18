@@ -95,7 +95,7 @@ mod tests {
     fn combine_with() {
         fn f(l: i32, r: i32) -> i32 {
             l + r
-        };
+        }
 
         // Test vector of (left, right, expected) values.
         let test_vector = vec![

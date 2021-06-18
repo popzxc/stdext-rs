@@ -302,8 +302,8 @@ mod tests {
             .add_days(1);
 
         let expected_duration = Duration::new(
-            1 * SECS_IN_DAY + 1 * SECS_IN_HOUR + 1 * SECS_IN_MIN + 1,
-            1 * 1_000_000 + 1 * 1_000 + 1,
+            SECS_IN_DAY + SECS_IN_HOUR + SECS_IN_MIN + 1,
+            1_000_000 + 1_000 + 1,
         );
 
         assert_eq!(duration, expected_duration);
