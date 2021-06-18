@@ -1,11 +1,11 @@
-pub trait FloatConvert<To>: Sized {
-    fn checked_floor(self) -> Option<To>;
-    fn checked_ceil(self) -> Option<To>;
-    fn checked_round(self) -> Option<To>;
+pub trait FloatConvert<Int>: Sized {
+    fn checked_floor(self) -> Option<Int>;
+    fn checked_ceil(self) -> Option<Int>;
+    fn checked_round(self) -> Option<Int>;
 
-    fn saturated_floor(self) -> To;
-    fn saturated_ceil(self) -> To;
-    fn saturated_round(self) -> To;
+    fn saturated_floor(self) -> Int;
+    fn saturated_ceil(self) -> Int;
+    fn saturated_round(self) -> Int;
 }
 
 macro_rules! checked_impl {
