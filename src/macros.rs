@@ -43,7 +43,7 @@ macro_rules! compile_warning {
 /// As the internal implementation is based on the [`std::any::type_name`], this macro derives
 /// all the limitations of this function.
 ///
-/// # Examples
+/// ## Examples
 ///
 /// ```rust
 /// mod bar {
@@ -69,4 +69,34 @@ macro_rules! function_name {
         // `3` is the length of the `::f`.
         &name[..name.len() - 3]
     }};
+}
+
+/// Attempts to get variant from the enum variable.
+///
+/// ## Examples
+///
+/// ```rust
+/// # use stdext::try_match;
+///
+/// #[derive(Debug, PartialEq)]
+/// enum Foo {
+///     Left(u16),
+///     Right(&'static str),
+/// }
+///
+/// assert_eq!(try_match!(Foo::Left(18), Foo::Left), Ok(18));
+/// assert_eq!(
+///     try_match!(Foo::Right("nope"), Foo::Left),
+///     Err(Foo::Right("nope"))
+/// );
+/// ```
+#[macro_export]
+macro_rules! try_match {
+    ($var:expr, $variant:path) => {
+        if let $variant(x) = $var {
+            Ok(x)
+        } else {
+            Err($var)
+        }
+    };
 }
