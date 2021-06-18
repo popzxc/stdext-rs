@@ -41,7 +41,7 @@
 //! [`DurationExt`]: duration/trait.DurationExt.html
 //! [`RwLockExt`]: sync/rw_lock/trait.RwLockExt.html
 //! [`MutexExt`]: sync/mutex/trait.MutexExt.html
-//! [`FloatConvert`]: num/float/trait.FloatConvert.html
+//! [`FloatConvert`]: num/float_convert/trait.FloatConvert.html
 //!
 //! ## Integer super-trait
 //!
