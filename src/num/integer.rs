@@ -45,8 +45,11 @@ pub trait Integer:
     + MulAssign
     + Copy
 {
+    /// The smallest value that can be represented by this integer type.
     const MIN: Self;
+    /// The largest value that can be represented by this integer type.
     const MAX: Self;
+    /// The size of this integer type in bits.
     const BITS: u32;
 
     /// See [`u128::from_str_radix`].

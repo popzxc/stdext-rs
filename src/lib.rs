@@ -124,6 +124,8 @@
 //!   }
 //!   ```
 
+#![warn(missing_docs, unreachable_pub)]
+
 pub mod duration;
 #[macro_use]
 pub mod macros;
