@@ -7,7 +7,7 @@
 [![Docs.rs](https://docs.rs/stdext/badge.svg)](https://docs.rs/stdext)
 [![Latest Version](https://img.shields.io/crates/v/stdext.svg)](https://crates.io/crates/stdext)
 [![License](https://img.shields.io/github/license/popzxc/stdext-rs.svg)](https://github.com/popzxc/stdext-rs)
-![Rust 1.44+ required](https://img.shields.io/badge/rust-1.44+-blue.svg?label=Rust)
+![Rust 1.53+ required](https://img.shields.io/badge/rust-1.53+-blue.svg?label=Rust)
 
 Additional features for the Rust standard library.
 
@@ -18,6 +18,10 @@ broad audience, but not yet implemented (or stabilized) in `std`.
 
 Crate is designed to be lightweight (no external dependencies!) and provide essential
 functionality which possible can get to the `std` some day.
+
+The minimal supported Rust version for release 0.3 is 1.53. However, if you need to use
+this crate with an older version of the compiler, check out release 0.2; there is a good
+chance that it will suit your needs.
 
 ## Highlights
 

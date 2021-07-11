@@ -4,6 +4,8 @@
 
 ## 0.3.0 (18.06.2021)
 
+- BREAKING: MSRV got bumped to 1.53.
+
 - `try_match` and `unwrap_match` macros to get a certain variant from an enum [#11].
 - `return_ok` and `return_some` macros for early return of successful calculation [#11].
 - `Integer` trait that unifies all the built-in integer types under a single interface [#12].
