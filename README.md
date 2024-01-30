@@ -101,10 +101,11 @@ chance that it will suit your needs.
 - New handy macros (mostly for development purposes):
   
   ```rust
-  use stdext::{compile_warning, function_name};
+  use stdext::{compile_warning, debug_name, function_name};
 
   fn sample_function() {
     println!("This function is called {}", function_name!());
+    println!("You can also found it here:", debug_name!());
 
     compile_warning!("This function must do something else...");
   }

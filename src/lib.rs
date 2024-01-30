@@ -58,9 +58,11 @@
 //!
 //! - [`compile_warning`] for spawning a user-defined compilation warnings.
 //! - [`function_name`] for getting an enclosing function name.
+//! - [`debug_name`] for getting a helpful string for debug.
 //!
 //! [`compile_warning`]: ./macro.compile_warning.html
 //! [`function_name`]: ./macro.function_name.html
+//! [`debug_name`]: ./macro.debug_name.html
 //!
 //! ## Highlights
 //!
@@ -115,10 +117,11 @@
 //! - New handy macros (mostly for development purposes):
 //!   
 //!   ```rust
-//!   use stdext::{compile_warning, function_name};
+//!   use stdext::{compile_warning, debug_name, function_name};
 //!
 //!   fn sample_function() {
 //!     println!("This function is called {}", function_name!());
+//!     println!("You can also found it here: {}", debug_name!());
 //!
 //!     compile_warning!("This function must do something else...");
 //!   }
