@@ -73,6 +73,41 @@ macro_rules! function_name {
     }};
 }
 
+/// This macro returns the name of the enclosing function, line number and also filename.
+/// As the internal implementation is based on the [`std::any::type_name`], this macro derives
+/// all the limitations of this function.
+///
+/// ## Examples
+///
+/// ```rust
+/// mod bar {
+///     pub fn sample_function() {
+///         use stdext::debug_name;
+///         assert!(debug_name!().starts_with("src/macros.rs:8"));
+///         assert!(debug_name!().ends_with("bar::sample_function"));
+///     }
+/// }
+///
+/// bar::sample_function();
+/// ```
+///
+/// [`std::any::type_name`]: https://doc.rust-lang.org/std/any/fn.type_name.html
+#[macro_export]
+macro_rules! debug_name {
+    () => {{
+        fn f() {}
+        fn type_name_of<T>(_: T) -> &'static str {
+            std::any::type_name::<T>()
+        }
+        let name = type_name_of(f);
+        // `3` is the length of the `::f`.
+        let trimmed_name = &name[..name.len() - 3];
+        let file = file!();
+        let line = line!();
+        format!("{file}:{line} at {trimmed_name}")
+    }};
+}
+
 /// Attempts to get variant from the enum variable.
 ///
 /// ## Examples
