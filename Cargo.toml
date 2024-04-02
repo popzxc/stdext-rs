@@ -1,6 +1,6 @@
 [package]
 name = "stdext"
-version = "0.3.2"
+version = "0.3.3"
 authors = ["Igor Aleksanov <popzxc@yandex.ru>"]
 edition = "2018"
 repository = "https://github.com/popzxc/stdext-rs"
