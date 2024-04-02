@@ -2,6 +2,14 @@
 
 ## [[Unreleased]]
 
+## 0.3.3 (18.06.2021)
+
+- `debug_name` convenience macro [#17].
+- Freestanding `debug` function [#18].
+
+[#17]: https://github.com/popzxc/stdext-rs/pull/17
+[#18]: https://github.com/popzxc/stdext-rs/pull/18
+
 ## 0.3.0 (18.06.2021)
 
 - BREAKING: MSRV got bumped to 1.53.

@@ -3,7 +3,7 @@
 /// Freestanding version of `std::default::Default::default()`.
 ///
 /// Used to be available under `#![feature(default_free_fn)]`,
-/// removed in https://github.com/rust-lang/rust/pull/113469.
+/// removed in [rust-lang/rust#113469](https://github.com/rust-lang/rust/pull/113469).
 ///
 /// # Examples
 ///
